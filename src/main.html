@@ -8,7 +8,7 @@
         <!--1.jQuery-->
         <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
         <!--2.JavaScript-->
-        <script src="sron.js"></script> 
+        <script src="../js/displaySwitch.js"></script> 
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.js"></script>
     </head>
@@ -33,10 +33,10 @@
         ヘッダー</label>
         
         <label class="icon file-label" id="icon">
-            <input type="file" value="icon" id="icon-uploader"name="src-img" accept="image/*">アイコンを選択
+            <input type="file" value="icon" id="icon-uploader" name="src-icon" accept="image/*">アイコンを選択
         </label>
         <label class="header file-label" id="header">
-            <input type="file" value="header" id="header-uploader"name="src-img" accept="image/*">ヘッダーを選択
+            <input type="file" value="header" id="header-uploader"name="src-header" accept="image/*">ヘッダーを選択
         </label>
     </div>
     <div class="inner">
@@ -47,7 +47,8 @@
                     <th>twitterのプロフィール</th>
                 </tr>
                 <tr>
-                    <td><canvas id="sourceCanvas2" ></canvas></td>
+                    <td><canvas id="croppedIconCanvas"></canvas></td>
+                    <td><canvas id="croppedCanvas"></canvas></td>
                 </tr>
             </table>
             <table class="icon preview">
@@ -56,8 +57,8 @@
                     <th>アイコンクロップ後の画像</th>
                 </tr>
                 <tr>
-                    <td><canvas id="sourceCanvas" ></canvas></td>
-                    <td><canvas id="croppedCanvas"></canvas></td>
+                    <td><canvas id="sourceIconCanvas" ></canvas></td>
+                    <td><canvas id="croppedIconCanvas"></canvas></td>
                 </tr>
             </table>
             <table class="header preview">
@@ -66,8 +67,10 @@
                     <th>ヘッダークロップ後の画像</th>
                 </tr>
                 <tr>
-                    <td><canvas id="sourceCanvas2" ></canvas></td>
-                    <td><canvas id="croppedCanvas2"></canvas></td>
+                    <td><canvas id="sourceCanvas" ></canvas></td>
+                    <td><canvas id="croppedCanvas"></canvas></td>
+                    <button id="header" class="header">kakutei</button>
+                    <td><canvas id="kakuteicroppedCanvas"></canvas></td>
                 </tr>
             </table>
             
@@ -243,7 +246,7 @@
     </div>
 </div> 
 </div>
-<script src="./cropper.js"></script>
-<script src="./cropper.js"></script>
+<script src="../js/cropper.js"></script>
+<script src="../js/displaySwitch.js"></script>
 </body>
 </html>
