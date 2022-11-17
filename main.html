@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>Twitterヘッダーアイコンエディタ</title>
+        <link rel="stylesheet" href="sron.css">
+        <link rel="stylesheet" type="text/css" media="all" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.css" />
+        <!--1.jQuery-->
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+        <!--2.JavaScript-->
+        <script src="sron.js"></script> 
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.js"></script>
+    </head>
+<body onload="loadImage('edit');">
+    <h1>Twitterヘッダーアイコンエディタ</h1>
+    <p>アイコン・ヘッダーごとに画像を選択し、ツールからテンプレートを選んで加工編集して下さい。</p>
+    <p>ブラウザ上でTwitterに使うヘッダーとアイコンの編集を行うことが出来ます。
+        Twitterボタンを押すと実際のプロフィールが見れます
+        アイコン・ヘッダーボタンでそれぞれのカスタマイズが出来ます</p>
+    <p></p>
+    <div class="button-group">
+        <input id="twitter" class="buttonList" type="radio" name="accessible-radio" value="twitter" checked="checked"/>
+        <label class="radio-label" for="twitter">
+        twitter</label>
+
+        <input id="icon" class="buttonList" type="radio" name="accessible-radio" value="icon" />
+        <label class="radio-label" for="icon">
+        アイコン</label>
+
+        <input id="header" class="buttonList" type="radio" name="accessible-radio" value="header"/>
+        <label class="radio-label" for="header">
+        ヘッダー</label>
+        
+        <label class="icon file-label" id="icon">
+            <input type="file" value="icon" id="icon-uploader"name="src-img" accept="image/*">アイコンを選択
+        </label>
+        <label class="header file-label" id="header">
+            <input type="file" value="header" id="header-uploader"name="src-img" accept="image/*">ヘッダーを選択
+        </label>
+    </div>
+    <div class="inner">
+        <div class="left">
+            <!--.プレビュー部分-->
+            <table class="twitter preview">
+                <tr>
+                    <th>twitterのプロフィール</th>
+                </tr>
+                <tr>
+                    <td><canvas id="sourceCanvas2" ></canvas></td>
+                </tr>
+            </table>
+            <table class="icon preview">
+                <tr>
+                    <th>アイコン元画像</th>
+                    <th>アイコンクロップ後の画像</th>
+                </tr>
+                <tr>
+                    <td><canvas id="sourceCanvas" ></canvas></td>
+                    <td><canvas id="croppedCanvas"></canvas></td>
+                </tr>
+            </table>
+            <table class="header preview">
+                <tr>
+                    <th>ヘッダー元画像</th>
+                    <th>ヘッダークロップ後の画像</th>
+                </tr>
+                <tr>
+                    <td><canvas id="sourceCanvas2" ></canvas></td>
+                    <td><canvas id="croppedCanvas2"></canvas></td>
+                </tr>
+            </table>
+            
+
+            <!--2.テンプレート部分-->
+                <!--空のツテンプレート-->       
+            <div class="empty"></div>
+                <!--フレームツール-->       
+            <div class="frame template">
+                <button id="frame" class="frame-group">
+                    <div class="tool-img"></div>
+                    <div class="tool-name">フレーム1</div>
+                </button>
+                <button id="frame" class="frame-group">
+                    <div class="tool-img"></div>
+                    <div class="tool-name">フレーム2</div>
+                </button>
+                <button id="frame" class="frame-group">
+                    <div class="tool-img"></div>
+                    <div class="tool-name">フレーム3</div>
+                </button>
+                <button id="frame" class="frame-group">
+                    <div class="tool-img"></div>
+                    <div class="tool-name">フレーム4</div>
+                </button>
+                <button id="frame" class="frame-group">
+                    <div class="tool-img"></div>
+                    <div class="tool-name">フレーム5</div>
+                </button>
+                <button id="frame" class="frame-group">
+                    <div class="tool-img"></div>
+                    <div class="tool-name">フレーム6</div>
+                </button>
+                <button id="frame" class="frame-group">
+                    <div class="tool-img"></div>
+                    <div class="tool-name">フレーム7</div>
+                </button>
+                <button id="frame" class="frame-group">
+                    <div class="tool-img"></div>
+                    <div class="tool-name">フレーム8</div>
+                </button>
+                </button>
+            </div>
+                <!--スタンプツール--> 
+            <div class="stamp template">
+                <button id="frame" class="frame-group">
+                    <div class="tool-img"></div>
+                    <div class="tool-name">スタンプ1</div>
+                </button>
+                <button id="frame" class="frame-group">
+                    <div class="tool-img"></div>
+                    <div class="tool-name">スタンプ2</div>
+                </button>
+                <button id="frame" class="frame-group">
+                    <div class="tool-img"></div>
+                    <div class="tool-name">スタンプ3</div>
+                </button>
+                <button id="frame" class="frame-group">
+                    <div class="tool-img"></div>
+                    <div class="tool-name">スタンプ4</div>
+                </button>
+                <button id="frame" class="frame-group">
+                    <div class="tool-img"></div>
+                    <div class="tool-name">スタンプ5</div>
+                </button>
+                <button id="frame" class="frame-group">
+                    <div class="tool-img"></div>
+                    <div class="tool-name">スタンプ6</div>
+                </button>
+                <button id="frame" class="frame-group">
+                    <div class="tool-img"></div>
+                    <div class="tool-name">スタンプ7</div>
+                </button>
+                <button id="frame" class="frame-group">
+                    <div class="tool-img"></div>
+                    <div class="tool-name">スタンプ8</div>
+                </button>
+            </div>
+            <!--テキストツール-->   
+            <div class="text template">
+                <!--ヒラノギ角ゴシック-->
+                <button id="frame" class="frame-group">
+                    <div class="tool-img"></div>
+                    <div class="tool-name">あア安</div>
+                </button>
+                <!--游游ゴシック-->
+                <button id="frame" class="frame-group">
+                    <div class="tool-img"></div>
+                    <div class="tool-name">あア安</div>
+                </button>
+                <!--筑紫ゴシック-->
+                <button id="frame" class="frame-group">
+                    <div class="tool-img"></div>
+                    <div class="tool-name">あア安</div>
+                </button>
+                <!--游明朝体-->
+                <button id="frame" class="frame-group">
+                    <div class="tool-img"></div>
+                    <div class="tool-name">あア安</div>
+                </button>
+                <!--Noto Serif-->
+                <button id="frame" class="frame-group">
+                    <div class="tool-img"></div>
+                    <div class="tool-name">あア安</div>
+                </button>
+                <button id="frame" class="frame-group">
+                    <div class="tool-img"></div>
+                    <div class="tool-name">あア安</div>
+                </button>
+                <button id="frame" class="frame-group">
+                    <div class="tool-img"></div>
+                    <div class="tool-name">テキスト7</div>
+                </button>
+                <button id="frame" class="frame-group">
+                    <div class="tool-img"></div>
+                    <div class="tool-name">テキスト8</div>
+                </button>
+                <button id="frame" class="frame-group">
+                    <div class="tool-img"></div>
+                    <div class="tool-name">テキスト9</div>
+                </button>
+                <div class="frame-group">
+                    <input type="text" id="canvas_text" value="テキスト">
+                    <button onclick="drawText('canvas_text');">文字を描く</button>
+                </div>
+            
+        </div>
+            <!--その他ツール-->   
+        <div class="etc template">
+            <div class="">^=^</div>
+        </div>
+    </div>
+    
+    <!--5.ツール部分  アイコンツール-->
+    <!--空のセクション-->       
+    <div class="twitter section"></div>
+    <div class="icon section">
+        <button id="frame" class="tool-group">
+            <div class="tool-img"></div>
+            <div class="tool-name">フレーム</div>
+        </button>
+        <button id="stamp" class="tool-group">
+            <div class="tool-img"></div>
+            <div class="tool-name">スタンプ</div>
+        </button>
+        <button id="text" class="tool-group">
+            <div class="tool-img"></div>
+            <div class="tool-name">テキスト</div>
+        </button>
+        <button id="etc" class="tool-group">
+            <div class="tool-img"></div>
+            <div class="tool-name">その他</div>
+        </button>
+    </div>
+    <!--5.ツール部分  ヘッダーツール 最初は非表示-->
+    <div class="header section">
+        <button id="frame" class="tool-group">
+            <div class="tool-img"></div>
+            <div class="tool-name">フレーム</div>
+        </button>
+        <button id="stamp" class="tool-group">
+            <div class="tool-img"></div>
+            <div class="tool-name">スタンプ</div>
+        </button>
+        <button id="text" class="tool-group">
+            <div class="tool-img"></div>
+            <div class="tool-name">テキスト</div>
+        </button>
+        <button id="etc" class="tool-group">
+            <div class="tool-img"></div>
+            <div class="tool-name">その</div>
+        </button>
+    </div>
+</div> 
+</div>
+<script src="./cropper.js"></script>
+<script src="./cropper.js"></script>
+</body>
+</html>
